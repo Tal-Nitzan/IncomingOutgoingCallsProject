@@ -25,12 +25,6 @@ public abstract class PhonecallReceiver extends BroadcastReceiver {
             listener = new PhonecallStartEndDetector();
         }
 
-        //We listen to two intents.  The new outgoing call only tells us of an outgoing call.  We use it to get the number.
-        if (intent.getAction().equals("android.intent.action.NEW_OUTGOING_CALL")) {
-            listener.setOutgoingNumber(intent.getExtras().getString("android.intent.extra.PHONE_NUMBER"));
-            return;
-        }
-
         //The other intent tells us the phone state changed.  Here we set a listener to deal with it
         TelephonyManager telephony = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
         telephony.listen(listener, PhoneStateListener.LISTEN_CALL_STATE);

@@ -43,7 +43,7 @@ public class CallsService extends Service {
                 h.post(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(context,"blabla",Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"blabla2",Toast.LENGTH_LONG).show();
                     }
                 });
             }

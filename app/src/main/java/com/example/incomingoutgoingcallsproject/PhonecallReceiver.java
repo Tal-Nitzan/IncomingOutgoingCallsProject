@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 public abstract class PhonecallReceiver extends BroadcastReceiver {
 
@@ -63,29 +64,30 @@ public abstract class PhonecallReceiver extends BroadcastReceiver {
             switch (state) {
                 case TelephonyManager.CALL_STATE_RINGING:
                     isIncoming = true;
-                    callStartTime = new Date();
                     savedNumber = incomingNumber;
-                    onIncomingCallStarted(incomingNumber, callStartTime);
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     //Transition of ringing->offhook are pickups of incoming calls.  Nothing donw on them
-                    if(lastState != TelephonyManager.CALL_STATE_RINGING){
+                    if(lastState != TelephonyManager.CALL_STATE_RINGING) {
                         isIncoming = false;
                         callStartTime = new Date();
-                        onOutgoingCallStarted(savedNumber, callStartTime);
+                        onOutgoingCallStarted(incomingNumber, callStartTime);
+                    } else {
+                        callStartTime = new Date();
+                        onIncomingCallStarted(incomingNumber, callStartTime);
                     }
                     break;
                 case TelephonyManager.CALL_STATE_IDLE:
                     //Went to idle-  this is the end of a call.  What type depends on previous state(s)
                     if(lastState == TelephonyManager.CALL_STATE_RINGING){
                         //Ring but no pickup-  a miss
-                        onMissedCall(savedNumber, callStartTime);
+                        onMissedCall(incomingNumber, callStartTime);
                     }
                     else if(isIncoming){
-                        onIncomingCallEnded(savedNumber, callStartTime, new Date());
+                        onIncomingCallEnded(incomingNumber, callStartTime, new Date());
                     }
                     else{
-                        onOutgoingCallEnded(savedNumber, callStartTime, new Date());
+                        onOutgoingCallEnded(incomingNumber, callStartTime, new Date());
                     }
                     break;
             }

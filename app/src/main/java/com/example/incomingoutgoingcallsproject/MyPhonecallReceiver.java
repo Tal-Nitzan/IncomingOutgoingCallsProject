@@ -1,5 +1,6 @@
 package com.example.incomingoutgoingcallsproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -12,6 +13,7 @@ import androidx.annotation.RequiresApi;
 import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Objects;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class MyPhonecallReceiver extends PhonecallReceiver {
@@ -25,43 +27,37 @@ public class MyPhonecallReceiver extends PhonecallReceiver {
 
     @Override
     protected void onIncomingCallStarted(String number, Date start) {
-        callBack_update.updateList();
-
+        Log.d("pttt2", "here : " + number);
     }
 
     @Override
     protected void onOutgoingCallStarted(String number, Date start) {
-        callBack_update.updateList();
-
+        Log.d("pttt2", "newone.");
     }
 
     @Override
     protected void onIncomingCallEnded(String number, Date start, Date end) {
-        callBack_update.updateList();
         addDurationToPhoneNumber(number, start, end);
+//        callBack_update.updateList();
     }
 
     @Override
     protected void onOutgoingCallEnded(String number, Date start, Date end) {
-        callBack_update.updateList();
         addDurationToPhoneNumber(number, start, end);
+//        callBack_update.updateList();
     }
 
     private void addDurationToPhoneNumber(String number, Date start, Date end) {
         long diff = end.getTime() - start.getTime();
         if (phoneToDuration.containsKey(number)) {
             Duration currentDuration = phoneToDuration.get(number).plusMillis(diff);
+//            Log.d("pttt2", "here : " + number);
             phoneToDuration.put(number, currentDuration);
-            Log.d("pttt", "Phonecall!");
         } else {
             phoneToDuration.put(number, Duration.ofMillis(diff));
-            Log.d("pttt", "Phonecall!");
         }
-        callBack_update.updateList();
         if (callBack_update != null) {
-            Log.d("pttt", "set callback " + callBack_update);
             callBack_update.updateList();
-            Log.d("pttt", "Phonecall!");
         }
     }
 

@@ -20,7 +20,6 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class MainActivity extends AppCompatActivity {
 
     private Context context;

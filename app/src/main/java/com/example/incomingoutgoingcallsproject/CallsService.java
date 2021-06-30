@@ -18,7 +18,6 @@ import androidx.annotation.RequiresApi;
 public class CallsService extends Service {
     private Context context;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate() {
         context = getBaseContext();

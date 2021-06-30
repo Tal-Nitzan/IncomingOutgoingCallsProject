@@ -15,7 +15,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
-@RequiresApi(api = Build.VERSION_CODES.O)
 public class MyPhonecallReceiver extends PhonecallReceiver {
 
     private static CallBack_Update callBack_update;
@@ -27,17 +26,17 @@ public class MyPhonecallReceiver extends PhonecallReceiver {
 
     @Override
     protected void onIncomingCallStarted(String number, Date start) {
-        Log.d("pttt2", "here : " + number);
+        Log.d("pttt", "in incoming call started");
     }
 
     @Override
     protected void onOutgoingCallStarted(String number, Date start) {
-        Log.d("pttt2", "newone.");
     }
 
     @Override
     protected void onIncomingCallEnded(String number, Date start, Date end) {
         addDurationToPhoneNumber(number, start, end);
+        Log.d("pttt", "in incoming call ended");
 //        callBack_update.updateList();
     }
 

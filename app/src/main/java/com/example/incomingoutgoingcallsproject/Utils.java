@@ -17,7 +17,6 @@ public class Utils {
 
     public static boolean ASC = true;
     public static boolean DESC = false;
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public static Map<String, Duration> sortByComparator(Map<String, Duration> unsortMap, final boolean order)
     {
 

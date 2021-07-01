@@ -9,7 +9,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-public abstract class PhonecallReceiver extends BroadcastReceiver {
+public abstract class PhoneCallReceiver extends BroadcastReceiver {
 
     //The receiver will be recreated whenever android feels like it.  We need a static variable to remember data between instantiations
     static PhonecallStartEndDetector listener;

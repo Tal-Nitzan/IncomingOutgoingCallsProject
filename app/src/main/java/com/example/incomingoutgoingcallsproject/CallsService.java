@@ -23,7 +23,7 @@ public class CallsService extends Service {
         context = getBaseContext();
         IntentFilter filter = new IntentFilter();
         filter.addAction(android.telephony.TelephonyManager.ACTION_PHONE_STATE_CHANGED);
-        Intent intent = new Intent(this, MyPhonecallReceiver.class);
+        Intent intent = new Intent(this, MyPhoneCallReceiver.class);
         sendBroadcast(intent);
         Log.d("pttt", "onCreate Thread: " + Thread.currentThread().getName());
     }

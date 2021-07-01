@@ -1,27 +1,20 @@
 package com.example.incomingoutgoingcallsproject;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import androidx.annotation.RequiresApi;
 
 import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Objects;
+import java.util.Map;
 
-public class MyPhonecallReceiver extends PhonecallReceiver {
+public class MyPhoneCallReceiver extends PhoneCallReceiver {
 
     private static CallBack_Update callBack_update;
-    public static HashMap<String, Duration> phoneToDuration = new HashMap<String, Duration>();
+    public static Map<String, Duration> phoneToDuration = new HashMap<String, Duration>();
 
     public static void setCallBack_update(CallBack_Update _callBack_update) {
-        MyPhonecallReceiver.callBack_update = _callBack_update;
+        MyPhoneCallReceiver.callBack_update = _callBack_update;
     }
 
     @Override
